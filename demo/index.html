@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudTech Grid - Interactive WordPress Theme Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* Demo Toolbar Overlay */
+    .demo-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-family-mono);
+      font-size: 0.82rem;
+      border-bottom: 1px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .demo-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .demo-btn {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #475569;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-family: var(--font-family-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .demo-btn:hover, .demo-btn.active {
+      background: #f6821f;
+      color: #ffffff;
+      border-color: #f6821f;
+    }
+    .demo-badge {
+      background: #334155;
+      color: #94a3b8;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 0.72rem;
+    }
+    .widget-editor-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .widget-editor-box {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      width: 90%;
+      max-width: 560px;
+      padding: 28px;
+      color: var(--color-text-primary);
+      box-shadow: var(--shadow-lg);
+    }
+    .widget-toggle-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo Control Toolbar -->
+  <div class="demo-bar">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <strong style="color: #f6821f;">CloudTech Grid</strong>
+      <span class="demo-badge">WP Theme v1.1.0</span>
+      <span>Animated TOC: <strong style="color:#4ade80;">Active</strong></span>
+    </div>
+
+    <div class="demo-controls">
+      <button class="demo-btn active" onclick="switchView('single')">Single Post View</button>
+      <button class="demo-btn" onclick="switchView('archive')">Blog Archive View</button>
+      <button class="demo-btn" onclick="openWidgetEditor()">⚙️ Customizer / Logo / Widgets</button>
+      <button class="demo-btn" onclick="CloudTechMain.toggleTheme()">🌓 Dark Mode</button>
+      <button class="demo-btn" style="background:#059669; border-color:#059669;" onclick="downloadThemeZip()">⬇️ Download WP Theme</button>
+    </div>
+  </div>
+
+  <div class="tech-grid-wrapper">
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <div class="header-container">
+        
+        <!-- Custom Logo Support -->
+        <div class="site-branding">
+          <a href="#" id="brand-logo-container" class="brand-logo">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+              <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+            </svg>
+            <span id="brand-text">CLOUDFLARE</span>
+          </a>
+        </div>
+
+        <nav class="primary-nav">
+          <ul>
+            <li><a href="#">Products &#9662;</a></li>
+            <li><a href="#">Solutions &#9662;</a></li>
+            <li><a href="#">Resources &#9662;</a></li>
+            <li><a href="#">Pricing</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <select class="tag-pill" style="cursor:pointer;" onchange="alert('Filter by category: ' + this.value)">
+            <option>All Categories</option>
+            <option>Agents</option>
+            <option>AI Bots</option>
+            <option>Security</option>
+          </select>
+
+          <button id="search-modal-trigger" class="icon-btn" title="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </button>
+
+          <button id="theme-toggle-btn" class="icon-btn" title="Toggle Light/Dark Theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line></svg>
+          </button>
+
+          <button class="btn-primary">Login</button>
+          <a href="#" style="font-size: 0.85rem; font-weight: 500; color: var(--color-text-secondary);">Contact Sales</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3-Column Layout Container -->
+    <div id="view-single" class="article-layout-grid">
+      
+      <!-- 1. LEFT SIDEBAR (WIDGETS) -->
+      <aside class="left-sidebar-col">
+        <div id="dynamic-left-widgets">
+          
+          <section id="widget-topics" class="widget">
+            <h3 class="widget-title">EXPLORE TOPICS</h3>
+            <ul>
+              <li><a href="#">Agentic Web Systems</a></li>
+              <li><a href="#">AI Bots & Security</a></li>
+              <li><a href="#">Zero Trust Mesh</a></li>
+              <li><a href="#">Workers & Serverless</a></li>
+            </ul>
+          </section>
+
+          <div id="widget-discuss" class="discuss-online-block">
+            <h3 class="widget-title">DISCUSS ONLINE</h3>
+            <div class="social-circle-grid">
+              <a href="#" class="social-pill" title="Hacker News">Y</a>
+              <a href="#" class="social-pill" title="X / Twitter">X</a>
+              <a href="#" class="social-pill" title="LinkedIn">in</a>
+              <a href="#" class="social-pill" title="Bluesky">&#129419;</a>
+              <a href="#" class="social-pill" title="Reddit">r/</a>
+              <a href="#" class="social-pill" title="Mastodon">M</a>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+
+      <!-- 2. CENTER MAIN CONTENT -->
+      <main class="main-content-col">
+        
+        <!-- Breadcrumbs & Pills -->
+        <div class="post-meta-top">
+          <nav class="breadcrumbs-nav">
+            <a href="#">Blog</a>
+            <span>&rsaquo;</span>
+            <a href="#">Agents</a>
+          </nav>
+
+          <div class="tag-pills-group">
+            <span class="tag-pill">Agents</span>
+            <span class="tag-pill">Agents Week</span>
+            <span class="tag-pill">AI Bots</span>
+            <span class="tag-pill">+2 &#9662;</span>
+          </div>
+        </div>
+
+        <!-- Article Header -->
+        <header class="entry-header">
+          <time class="post-date-stamp">AUGUST 7, 2026</time>
+          <h1 class="entry-title">Unveiling good and bad behaviors on the Agentic Internet</h1>
+          
+          <div class="author-meta-bar">
+            <div class="author-info">
+              <div class="author-avatars">
+                <img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Jin-Hee Lee">
+                <img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Marina Elmore">
+              </div>
+              <div class="author-names">
+                Jin-Hee Lee <span>and</span> Marina Elmore
+              </div>
+            </div>
+
+            <div class="reading-meta-tools">
+              <span class="tool-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                10 MINUTE READ
+              </span>
+              <button class="tool-item" onclick="CloudTechMain.copyCurrentUrl(this)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                COPY URL
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Article Body -->
+        <article class="entry-content">
+          <p>
+            The Internet isn't a single lane of traffic. For a long time, the rule of thumb in web security was that bots are bad, while humans are good. Of course, we're far past this generalization. Humans can be fraudulent, and bots can be helpful at different levels. Site owners actively want some automated traffic to interact with our sites to make the Internet functional and discoverable.
+          </p>
+
+          <h2 id="defining-risk-and-trust">Defining Risk and Trust</h2>
+          <p>
+            When evaluating agentic systems, risk isn't static. An agent performing data collection for search indexing presents a drastically lower risk profile than an autonomous agent attempting high-frequency credential stuffing. Trust must be earned dynamically through cryptographic signatures and verified behavioral patterns.
+          </p>
+
+          <h2 id="good-behaviors-rooted-in-transparency">Good behaviors, rooted in transparency</h2>
+          <p>
+            Well-behaved agents declare their identity clearly in user-agent strings and abide by robots.txt, rate limits, and site preferences. They operate predictably and respect server bandwidth constraints.
+          </p>
+          <blockquote>
+            "Transparency is the cornerstone of the agentic web. If an agent disguises its intent, it forfeits trust."
+          </blockquote>
+
+          <h2 id="bad-behaviors-blatant-stealthy-and-everything-in-between">Bad behaviors: blatant, stealthy, and everything in between</h2>
+          <p>
+            On the opposite end, malicious bots attempt fingerprint spoofing, IP rotation across residential proxy networks, and aggressive content scraping without attribution or consent.
+          </p>
+
+          <h2 id="adaptive-intelligence-is-coming-soon">Adaptive Intelligence is coming soon</h2>
+          <p>
+            Next-generation edge security models use machine learning inference at the edge to continuously update threat scores without adding latency to legitimate human and agent traffic.
+          </p>
+
+          <h2 id="moving-beyond-determinism-to-influence-bot-behavior">Moving beyond determinism to influence bot behavior</h2>
+          <p>
+            Instead of binary blocking, modern web platforms employ dynamic challenge suites, rate limiting, and agentic negotiations to guide traffic safely.
+          </p>
+
+          <h2 id="establish-the-trust-ecosystem-that-works-for-you">Establish the Trust ecosystem that works for you</h2>
+          <p>
+            By adopting granular security rules and automated agent management, site owners can capture the benefits of AI automation while safeguarding infrastructure.
+          </p>
+        </article>
+
+        <!-- Sleek, Minimal Previous & Next Post Navigation Block -->
+        <nav class="post-navigation-minimal">
+          <div class="post-nav-grid">
+            <a href="#" class="post-nav-card nav-previous">
+              <span class="post-nav-direction">&larr; PREVIOUS ARTICLE</span>
+              <span class="post-nav-title">How we built Zero Trust Access for AI Agents at scale</span>
+            </a>
+            <a href="#" class="post-nav-card nav-next">
+              <span class="post-nav-direction">NEXT ARTICLE &rarr;</span>
+              <span class="post-nav-title">Improving Web performance with Workers KV and smart routing</span>
+            </a>
+          </div>
+        </nav>
+
+      </main>
+
+      <!-- 3. RIGHT SIDEBAR (ANIMATED TOC MATCHING CLOUDFLARE IMAGE) -->
+      <aside class="right-sidebar-col">
+        <div id="toc-wrapper" class="toc-container">
+          <h3 class="toc-header">ON THIS PAGE</h3>
+          <div class="toc-list-wrapper">
+            <div class="toc-track-line"></div>
+            <div class="toc-active-bar"></div>
+            <ul id="toc-list" class="toc-list">
+              <!-- Auto generated by assets/js/toc.js with animated sliding indicator -->
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Blog Archive View -->
+    <div id="view-archive" class="article-layout-grid" style="display:none;">
+      <aside class="left-sidebar-col">
+        <section class="widget">
+          <h3 class="widget-title">ARCHIVE CATEGORIES</h3>
+          <ul>
+            <li><a href="#">Agents (14)</a></li>
+            <li><a href="#">AI Bots (29)</a></li>
+            <li><a href="#">Security (42)</a></li>
+          </ul>
+        </section>
+      </aside>
+
+      <main class="main-content-col">
+        <header style="margin-bottom:32px; border-bottom:1px dashed var(--color-grid-line); padding-bottom:16px;">
+          <h1 class="entry-title" style="font-size:2rem;">Cloudflare Engineering Blog</h1>
+        </header>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:24px;">
+          <article style="background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:20px;">
+            <span style="font-family:var(--font-family-mono); font-size:0.75rem; color:var(--color-text-muted);">AUG 7, 2026</span>
+            <h2 style="font-size:1.15rem; font-weight:700; margin:10px 0;"><a href="#" style="color:var(--color-text-primary);">Unveiling good and bad behaviors on the Agentic Internet</a></h2>
+            <p style="font-size:0.88rem; color:var(--color-text-secondary);">The Internet isn't a single lane of traffic. Assessing behaviors across agentic traffic...</p>
+          </article>
+        </div>
+      </main>
+
+      <aside class="right-sidebar-col">
+        <div class="toc-header">NEWSLETTER</div>
+        <p style="font-size:0.8rem; color:var(--color-text-muted);">Subscribe to weekly developer updates.</p>
+      </aside>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="copy-toast" class="copy-toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    <span>Article URL copied to clipboard!</span>
+  </div>
+
+  <!-- Customizer & Options Modal -->
+  <div id="widget-modal" class="widget-editor-modal">
+    <div class="widget-editor-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3 style="font-family:var(--font-family-heading); font-size:1.2rem; font-weight:700;">Theme Customizer & Options</h3>
+        <button class="demo-btn" onclick="closeWidgetEditor()">&times; Close</button>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;">1. Custom Logo Support</h4>
+        <p style="font-size: 0.82rem; color: var(--color-text-secondary); margin-bottom: 10px;">
+          WordPress <code>the_custom_logo()</code> is registered in <code>functions.php</code> and <code>header.php</code>.
+        </p>
+        <button class="demo-btn" onclick="toggleCustomLogo()">Toggle Image Logo vs Text Logo</button>
+      </div>
+
+      <div style="margin-bottom: 20px; padding-top: 16px; border-top: 1px solid var(--color-border);">
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;">2. Gutenberg Block Editor Fonts</h4>
+        <p style="font-size: 0.82rem; color: var(--color-text-secondary);">
+          Configured via <code>theme.json</code> and <code>editor-style.css</code> so when writing posts in WordPress Admin, fonts, headings, and code blocks match the frontend.
+        </p>
+      </div>
+
+      <div style="padding-top: 16px; border-top: 1px solid var(--color-border);">
+        <h4 style="font-size: 0.9rem; font-weight: 700; margin-bottom: 8px;">3. Left Sidebar Widgets</h4>
+        <div class="widget-toggle-item">
+          <span>Topics Widget</span>
+          <input type="checkbox" checked onchange="toggleWidget('widget-topics', this.checked)">
+        </div>
+        <div class="widget-toggle-item">
+          <span>Discuss Online Widget</span>
+          <input type="checkbox" checked onchange="toggleWidget('widget-discuss', this.checked)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/toc.js"></script>
+  <script>
+    let customLogoActive = false;
+    function toggleCustomLogo() {
+      const container = document.getElementById('brand-logo-container');
+      customLogoActive = !customLogoActive;
+      if (customLogoActive) {
+        container.innerHTML = `<img src="https://dash.cloudflare.com/img/cloudflare-logo-v-rgb.svg" style="height:32px; width:auto;" alt="Cloudflare Custom Logo">`;
+      } else {
+        container.innerHTML = `
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+          </svg>
+          <span id="brand-text">CLOUDFLARE</span>`;
+      }
+    }
+
+    function switchView(view) {
+      document.getElementById('view-single').style.display = view === 'single' ? 'grid' : 'none';
+      document.getElementById('view-archive').style.display = view === 'archive' ? 'grid' : 'none';
+      document.querySelectorAll('.demo-controls .demo-btn').forEach((b, i) => {
+        if (i < 2) b.classList.toggle('active', (i === 0 && view === 'single') || (i === 1 && view === 'archive'));
+      });
+    }
+
+    function openWidgetEditor() {
+      document.getElementById('widget-modal').style.display = 'flex';
+    }
+
+    function closeWidgetEditor() {
+      document.getElementById('widget-modal').style.display = 'none';
+    }
+
+    function toggleWidget(id, show) {
+      const el = document.getElementById(id);
+      if (el) el.style.display = show ? 'block' : 'none';
+    }
+
+    function downloadThemeZip() {
+      alert("Theme Package Ready!\n\nAll theme files are created in your workspace at:\nC:\\Users\\quick\\.gemini\antigravity\\scratch\\cloudflare-tech-theme\n\nYou can zip this directory and upload directly to WordPress via Appearance -> Themes -> Add New -> Upload Theme!");
+    }
+  </script>
+</body>
+</html>

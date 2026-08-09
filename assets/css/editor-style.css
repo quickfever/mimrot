@@ -1,0 +1,86 @@
+/**
+ * CloudTech Grid - WordPress Gutenberg Block Editor Stylesheet
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+/* Editor Canvas Reset & Base Typography */
+.editor-styles-wrapper {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 1.05rem !important;
+  line-height: 1.75 !important;
+  color: #121212 !important;
+  background-color: #fcfcfc !important;
+}
+
+/* Headings in Gutenberg Editor */
+.editor-styles-wrapper h1,
+.editor-styles-wrapper .wp-block-post-title,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3,
+.editor-styles-wrapper h4 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif !important;
+  color: #121212 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.editor-styles-wrapper h1,
+.editor-styles-wrapper .wp-block-post-title {
+  font-size: 2.75rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  margin-bottom: 24px !important;
+}
+
+.editor-styles-wrapper h2 {
+  font-size: 1.75rem !important;
+  font-weight: 700 !important;
+  margin-top: 2em !important;
+  margin-bottom: 0.8em !important;
+}
+
+.editor-styles-wrapper h3 {
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  margin-top: 1.6em !important;
+  margin-bottom: 0.6em !important;
+}
+
+.editor-styles-wrapper p {
+  margin-bottom: 1.6em !important;
+  color: #3f3f46 !important;
+}
+
+/* Gutenberg Blockquotes */
+.editor-styles-wrapper blockquote,
+.editor-styles-wrapper .wp-block-quote {
+  border-left: 3px solid #f6821f !important;
+  padding: 16px 24px !important;
+  background-color: #ffffff !important;
+  border-radius: 0 8px 8px 0 !important;
+  margin: 2em 0 !important;
+  font-style: italic !important;
+  color: #121212 !important;
+}
+
+/* Gutenberg Code Blocks */
+.editor-styles-wrapper pre,
+.editor-styles-wrapper .wp-block-code {
+  background-color: #18181b !important;
+  color: #f4f4f5 !important;
+  padding: 20px !important;
+  border-radius: 8px !important;
+  font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+  font-size: 0.88rem !important;
+  margin: 2em 0 !important;
+  border: 1px solid #27272a !important;
+}
+
+.editor-styles-wrapper code {
+  font-family: 'Fira Code', 'JetBrains Mono', monospace !important;
+  background: #f4f4f5 !important;
+  color: #e06d0b !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.88rem !important;
+}

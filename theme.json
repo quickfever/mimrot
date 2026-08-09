@@ -1,0 +1,119 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": "2",
+  "settings": {
+    "appearanceTools": true,
+    "typography": {
+      "customFontSize": true,
+      "fontStyle": true,
+      "fontWeight": true,
+      "letterSpacing": true,
+      "lineHeight": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif",
+          "name": "Inter (Body)",
+          "slug": "inter"
+        },
+        {
+          "fontFamily": "\"Space Grotesk\", \"Inter\", sans-serif",
+          "name": "Space Grotesk (Headings)",
+          "slug": "space-grotesk"
+        },
+        {
+          "fontFamily": "\"Fira Code\", \"JetBrains Mono\", monospace",
+          "name": "Fira Code (Code / Mono)",
+          "slug": "fira-code"
+        }
+      ],
+      "fontSizes": [
+        {
+          "name": "Small",
+          "size": "0.85rem",
+          "slug": "small"
+        },
+        {
+          "name": "Normal",
+          "size": "1.05rem",
+          "slug": "normal"
+        },
+        {
+          "name": "Medium",
+          "size": "1.25rem",
+          "slug": "medium"
+        },
+        {
+          "name": "Large",
+          "size": "1.75rem",
+          "slug": "large"
+        },
+        {
+          "name": "Extra Large",
+          "size": "2.5rem",
+          "slug": "x-large"
+        }
+      ]
+    },
+    "color": {
+      "custom": true,
+      "palette": [
+        {
+          "color": "#f6821f",
+          "name": "Cloudflare Orange",
+          "slug": "cloudflare-orange"
+        },
+        {
+          "color": "#121212",
+          "name": "Dark Text",
+          "slug": "dark-text"
+        },
+        {
+          "color": "#52525b",
+          "name": "Muted Text",
+          "slug": "muted-text"
+        },
+        {
+          "color": "#fcfcfc",
+          "name": "Light Surface",
+          "slug": "light-surface"
+        },
+        {
+          "color": "#09090b",
+          "name": "Dark Surface",
+          "slug": "dark-surface"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "780px",
+      "wideSize": "1100px"
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--inter)",
+      "fontSize": "1.05rem",
+      "lineHeight": "1.75"
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--space-grotesk)",
+          "fontWeight": "700"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--space-grotesk)",
+          "fontWeight": "700"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--space-grotesk)",
+          "fontWeight": "600"
+        }
+      }
+    }
+  }
+}
