@@ -38,6 +38,19 @@
 				<?php
 			}
 			?>
+
+			<?php if ( get_theme_mod( 'cloudtech_enable_random_post_btn', true ) ) : ?>
+				<a href="<?php echo esc_url( home_url( '/?random=1' ) ); ?>" class="random-post-btn" title="<?php esc_attr_e( 'Read Random Article', 'cloudtech' ); ?>" aria-label="<?php esc_attr_e( 'Random Article', 'cloudtech' ); ?>">
+					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+						<polyline points="16 3 21 3 21 8"></polyline>
+						<line x1="4" y1="20" x2="21" y2="3"></line>
+						<polyline points="21 16 21 21 16 21"></polyline>
+						<line x1="15" y1="15" x2="21" y2="21"></line>
+						<line x1="4" y1="4" x2="9" y2="9"></line>
+					</svg>
+					<span><?php esc_html_e( 'Random', 'cloudtech' ); ?></span>
+				</a>
+			<?php endif; ?>
 		</div>
 
 		<!-- Primary Navigation Menu -->
@@ -53,9 +66,24 @@
 				);
 			} else {
 				?>
-				<ul>
-					<li><a href="#"><?php esc_html_e( 'Products', 'cloudtech' ); ?> &#9662;</a></li>
-					<li><a href="#"><?php esc_html_e( 'Solutions', 'cloudtech' ); ?> &#9662;</a></li>
+				<ul class="nav-menu">
+					<li class="menu-item-has-children">
+						<a href="#"><?php esc_html_e( 'Products', 'cloudtech' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
+						<ul class="sub-menu">
+							<li><a href="#"><?php esc_html_e( 'Cloud Security', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Zero Trust Architecture', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Developer Platform', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'AI & Vector Database', 'cloudtech' ); ?></a></li>
+						</ul>
+					</li>
+					<li class="menu-item-has-children">
+						<a href="#"><?php esc_html_e( 'Solutions', 'cloudtech' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
+						<ul class="sub-menu">
+							<li><a href="#"><?php esc_html_e( 'Enterprise Edge', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Startups & Scale-ups', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'E-Commerce Infrastructure', 'cloudtech' ); ?></a></li>
+						</ul>
+					</li>
 					<li><a href="#"><?php esc_html_e( 'Resources', 'cloudtech' ); ?></a></li>
 					<li><a href="#"><?php esc_html_e( 'Pricing', 'cloudtech' ); ?></a></li>
 				</ul>
@@ -102,7 +130,14 @@
 			</button>
 
 			<!-- Action Button -->
-			<a href="<?php echo esc_url( wp_login_url() ); ?>" class="btn-primary"><?php esc_html_e( 'Login', 'cloudtech' ); ?></a>
+			<?php
+			$header_btn_text = get_theme_mod( 'cloudtech_header_button_text', __( 'Login', 'cloudtech' ) );
+			$header_btn_url  = get_theme_mod( 'cloudtech_header_button_url', '' );
+			if ( empty( $header_btn_url ) ) {
+				$header_btn_url = wp_login_url();
+			}
+			?>
+			<a href="<?php echo esc_url( $header_btn_url ); ?>" class="btn-primary"><?php echo esc_html( $header_btn_text ); ?></a>
 		</div>
 
 	</div>

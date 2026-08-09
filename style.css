@@ -4,7 +4,7 @@ Theme URI: https://example.com/cloudtech-grid
 Author: Antigravity AI
 Author URI: https://example.com/
 Description: A high-performance, developer-focused WordPress theme featuring a Cloudflare-inspired technical grid aesthetic, 3-column article layout with customizable left sidebar widgets, automated right sidebar Table of Contents scroll-spy with animated indicator bar, custom logo support, and Gutenberg block editor typography presets.
-Version: 1.1.0
+Version: 1.2.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: cloudtech
@@ -120,10 +120,29 @@ a:hover, a:focus-visible {
   color: var(--color-link-hover);
 }
 
-img {
-  max-width: 100%;
+img, video, iframe, embed, object, svg, figure {
+  max-width: 100% !important;
   height: auto;
-  display: block;
+  box-sizing: border-box;
+}
+
+figure {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+}
+
+.wp-block-image,
+.wp-block-image img,
+.wp-block-embed,
+.wp-block-embed iframe,
+.entry-content img,
+.entry-content figure,
+.entry-content iframe,
+.entry-content video {
+  max-width: 100% !important;
+  height: auto !important;
+  box-sizing: border-box;
 }
 
 button, input, select, textarea {
@@ -206,18 +225,65 @@ button, input, select, textarea {
   fill: var(--color-accent);
 }
 
-/* Nav Menu */
+/* Minimal Header Random Post Button */
+.random-post-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  margin-left: 2px;
+}
+
+.random-post-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+.random-post-btn svg {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.random-post-btn:hover svg {
+  color: var(--color-accent);
+}
+
+/* Nav Menu & Submenus */
 .primary-nav {
   display: flex;
   align-items: center;
-  gap: 24px;
 }
 
-.primary-nav ul {
+.primary-nav > ul,
+.primary-nav .nav-menu {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 24px;
   align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav li {
+  position: relative;
+  list-style: none;
+}
+
+.primary-nav > ul > li > a,
+.primary-nav .nav-menu > li > a {
+  padding: 16px 0;
 }
 
 .primary-nav a {
@@ -227,10 +293,99 @@ button, input, select, textarea {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  padding: 8px 0;
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
-.primary-nav a:hover {
+.primary-nav a:hover,
+.primary-nav li:hover > a {
   color: var(--color-accent);
+}
+
+/* Submenu Dropdown - Appears ONLY on Hover */
+.primary-nav ul.sub-menu,
+.primary-nav li > ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 8px 0;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  
+  /* Hidden by default, visible on hover */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Invisible Hover Bridge preventing mouseout gap when moving cursor to dropdown */
+.primary-nav ul.sub-menu::before,
+.primary-nav li > ul::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: transparent;
+}
+
+/* Reveal Submenu on Hover or Keyboard Focus */
+.primary-nav li:hover > ul.sub-menu,
+.primary-nav li:hover > ul,
+.primary-nav li:focus-within > ul.sub-menu,
+.primary-nav li:focus-within > ul {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Submenu Item Links */
+.primary-nav ul.sub-menu li,
+.primary-nav li > ul li {
+  width: 100%;
+  margin: 0;
+}
+
+.primary-nav ul.sub-menu a,
+.primary-nav li > ul a {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.primary-nav ul.sub-menu a:hover,
+.primary-nav li > ul a:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-accent);
+}
+
+/* Nested Submenus (Level 2+) */
+.primary-nav ul.sub-menu ul,
+.primary-nav li > ul li > ul {
+  top: 0;
+  left: 100%;
+  margin-top: -8px;
+  margin-left: 4px;
 }
 
 /* Action Controls */
@@ -579,22 +734,22 @@ button, input, select, textarea {
 
 .toc-container {
   position: relative;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
 }
 
 .toc-header {
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-text-muted);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .toc-list-wrapper {
   position: relative;
-  padding-left: 16px;
+  padding-left: 14px;
 }
 
 /* Continuous Vertical Track Line */
@@ -625,7 +780,7 @@ button, input, select, textarea {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .toc-item {
@@ -635,9 +790,9 @@ button, input, select, textarea {
 .toc-item a {
   color: var(--color-text-secondary);
   display: block;
-  line-height: 1.45;
+  line-height: 1.35;
   font-weight: 400;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   transition: color var(--transition-fast);
 }
 
@@ -652,7 +807,11 @@ button, input, select, textarea {
 }
 
 .toc-item.level-h3 {
-  padding-left: 12px;
+  padding-left: 10px;
+}
+
+.toc-item.level-h3 a {
+  font-size: 0.74rem;
 }
 
 /* ==========================================================================
@@ -755,16 +914,22 @@ button, input, select, textarea {
 
 @media (max-width: 900px) {
   .article-layout-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    overflow-x: hidden;
   }
   .left-sidebar-col {
     display: none;
   }
   .main-content-col {
-    padding: 24px 20px;
+    padding: 24px 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
   .entry-title {
-    font-size: 2rem;
+    font-size: 1.85rem;
+    word-break: break-word;
   }
   .primary-nav {
     display: none;
@@ -773,3 +938,413 @@ button, input, select, textarea {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   7. MINIMAL & MODERN COMMENTS SECTION STYLING
+   ========================================================================== */
+.comments-area {
+  margin-top: 56px;
+  padding-top: 40px;
+  border-top: 1px dashed var(--color-grid-line);
+}
+
+.comments-title {
+  font-family: var(--font-family-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 32px;
+}
+
+/* Comment List Container */
+.comment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.comment-list .comment {
+  list-style: none;
+}
+
+/* Individual Comment Card */
+.comment-body {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+.comment-body:hover {
+  border-color: var(--color-text-muted);
+}
+
+/* Comment Meta Header */
+.comment-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.comment-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comment-author .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+}
+
+.comment-author .fn {
+  font-family: var(--font-family-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  font-style: normal;
+}
+
+.comment-author .says {
+  display: none;
+}
+
+.comment-metadata {
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comment-metadata a {
+  color: var(--color-text-muted);
+}
+
+.comment-metadata a:hover {
+  color: var(--color-accent);
+}
+
+/* Comment Body Content */
+.comment-content {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.comment-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Comment Reply Button */
+.comment .reply {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-reply-link {
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.comment-reply-link:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+/* Nested Reply Threading */
+.comment-list .children {
+  list-style: none;
+  padding-left: 20px;
+  margin-top: 16px;
+  border-left: 2px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Comment Respond Form */
+#respond {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--color-grid-line);
+}
+
+#reply-title {
+  font-family: var(--font-family-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-primary);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#cancel-comment-reply-link {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  text-transform: none;
+  font-weight: 500;
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.comment-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .comment-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.comment-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form input[type="url"],
+.comment-form textarea {
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.15);
+}
+
+.comment-submit-btn,
+.comment-form input[type="submit"] {
+  align-self: flex-start;
+  margin-top: 8px;
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition-fast), background-color var(--transition-fast);
+}
+
+.comment-submit-btn:hover,
+.comment-form input[type="submit"]:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.comment-notes,
+.logged-in-as {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+.logged-in-as a {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   8. MINIMAL & MODERN PAGINATION STYLING
+   ========================================================================== */
+.pagination-wrapper {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px dashed var(--color-grid-line);
+}
+
+.navigation.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation.pagination .screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.nav-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 10px;
+  font-family: var(--font-family-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.page-numbers:hover {
+  border-color: var(--color-border);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+}
+
+.page-numbers.current {
+  background-color: var(--color-surface);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.page-numbers.dots {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  min-width: 20px;
+  padding: 0;
+  opacity: 0.6;
+}
+
+.page-numbers.prev,
+.page-numbers.next {
+  padding: 0 12px;
+  font-family: var(--font-family-sans);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.page-numbers.prev:hover,
+.page-numbers.next:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   9. FOOTER BOTTOM MENU & COPYRIGHT BAR STYLING
+   ========================================================================== */
+.footer-bottom {
+  padding-top: 24px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.footer-copyright {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.footer-nav {
+  display: flex;
+  align-items: center;
+}
+
+.footer-menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.footer-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-menu a {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-menu a:hover {
+  color: var(--color-accent);
+}
+

@@ -34,13 +34,13 @@ get_header();
 				?>
 			</div>
 
-			<div class="pagination-wrapper" style="margin-top: 48px; text-align: center;">
+			<div class="pagination-wrapper">
 				<?php
 				the_posts_pagination(
 					array(
 						'mid_size'  => 2,
-						'prev_text' => __( '&laquo; Previous', 'cloudtech' ),
-						'next_text' => __( 'Next &raquo;', 'cloudtech' ),
+						'prev_text' => __( '&larr; Previous', 'cloudtech' ),
+						'next_text' => __( 'Next &rarr;', 'cloudtech' ),
 					)
 				);
 				?>

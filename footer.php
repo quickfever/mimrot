@@ -57,15 +57,40 @@
 		</div>
 
 		<!-- Bottom Copyright Bar -->
-		<div class="footer-bottom" style="padding-top: 24px; border-top: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; font-size: 0.82rem; color: var(--color-text-muted);">
-			<div>
-				&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. <?php esc_html_e( 'All rights reserved.', 'cloudtech' ); ?>
+		<div class="footer-bottom">
+			<div class="footer-copyright">
+				<?php
+				$copyright_text = get_theme_mod( 'cloudtech_footer_copyright', '' );
+				if ( ! empty( $copyright_text ) ) {
+					echo esc_html( $copyright_text );
+				} else {
+					echo '&copy; ' . esc_html( date( 'Y' ) ) . ' ' . get_bloginfo( 'name' ) . '. ' . esc_html__( 'All rights reserved.', 'cloudtech' );
+				}
+				?>
 			</div>
-			<div style="display: flex; gap: 16px;">
-				<a href="#" style="color: var(--color-text-muted);"><?php esc_html_e( 'Privacy Policy', 'cloudtech' ); ?></a>
-				<a href="#" style="color: var(--color-text-muted);"><?php esc_html_e( 'Terms of Service', 'cloudtech' ); ?></a>
-				<a href="#" style="color: var(--color-text-muted);"><?php esc_html_e( 'Cookie Preferences', 'cloudtech' ); ?></a>
-			</div>
+
+			<nav class="footer-nav" aria-label="<?php esc_attr_e( 'Footer Navigation', 'cloudtech' ); ?>">
+				<?php
+				if ( has_nav_menu( 'footer' ) ) {
+					wp_nav_menu(
+						array(
+							'theme_location' => 'footer',
+							'menu_class'     => 'footer-menu',
+							'container'      => false,
+							'depth'          => 1,
+						)
+					);
+				} else {
+					?>
+					<ul class="footer-menu">
+						<li><a href="#"><?php esc_html_e( 'Privacy Policy', 'cloudtech' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Terms of Service', 'cloudtech' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Cookie Preferences', 'cloudtech' ); ?></a></li>
+					</ul>
+					<?php
+				}
+				?>
+			</nav>
 		</div>
 
 	</div>
