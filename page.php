@@ -2,7 +2,8 @@
 /**
  * The template for displaying all pages
  *
- * @package CloudTech
+ * @package Mimrot
+ * @version 1.2.1
  */
 
 get_header();

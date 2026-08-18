@@ -1,16 +1,16 @@
 /*
-Theme Name: CloudTech Grid
-Theme URI: https://example.com/cloudtech-grid
-Author: Antigravity AI
-Author URI: https://example.com/
-Description: A high-performance, developer-focused WordPress theme featuring a Cloudflare-inspired technical grid aesthetic, 3-column article layout with customizable left sidebar widgets, automated right sidebar Table of Contents scroll-spy with animated indicator bar, custom logo support, and Gutenberg block editor typography presets.
-Version: 1.2.0
+Theme Name: Mimrot
+Theme URI: https://mimrot.com
+Author: Mimrot
+Author URI: https://mimrot.com
+Description: A high-performance, developer-focused WordPress theme featuring a technical grid aesthetic, 3-column article layout with customizable left sidebar widgets, automated right sidebar Table of Contents scroll-spy with animated indicator bar, custom logo support, and Gutenberg block editor typography presets.
+Version: 1.2.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: cloudtech
+Text Domain: mimrot
 Tags: blog, news, three-columns, right-sidebar, left-sidebar, custom-menu, featured-images, full-width-template, theme-options, translation-ready, grid-layout, dark-mode, custom-logo
 
-CloudTech Grid WordPress Theme, (C) 2026 Antigravity
+Mimrot WordPress Theme, (C) 2026 Mimrot
 */
 
 /* ==========================================================================
@@ -462,6 +462,10 @@ button, input, select, textarea {
   margin-bottom: 32px;
 }
 
+.widget:last-child {
+  margin-bottom: 0;
+}
+
 .widget-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -471,12 +475,24 @@ button, input, select, textarea {
   margin-bottom: 14px;
 }
 
-.widget ul {
+.widget ul,
+.widget ol {
   list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.widget ul:last-child,
+.widget ol:last-child {
+  margin-bottom: 0;
 }
 
 .widget li {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+}
+
+.widget li:last-child {
+  margin-bottom: 0;
 }
 
 .widget li a {
@@ -487,6 +503,28 @@ button, input, select, textarea {
 
 .widget li a:hover {
   color: var(--color-accent);
+}
+
+/* Sidebar Search Widget Specifics */
+.widget_search .search-form,
+.widget .search-form {
+  width: 100%;
+}
+
+.widget_search .search-input-wrapper {
+  width: 100%;
+  padding: 3px 4px 3px 10px;
+  box-sizing: border-box;
+}
+
+.widget_search .search-field {
+  padding: 6px 6px;
+  font-size: 0.82rem;
+}
+
+.widget_search .search-submit-btn {
+  padding: 6px 12px;
+  font-size: 0.75rem;
 }
 
 .discuss-online-block {
@@ -678,6 +716,26 @@ button, input, select, textarea {
 
 .entry-content p {
   margin-bottom: 1.6em;
+}
+
+.entry-content ul,
+.entry-content ol {
+  margin-bottom: 1.6em;
+  padding-left: 1.5em;
+  color: var(--color-text-secondary);
+}
+
+.entry-content ul:last-child,
+.entry-content ol:last-child {
+  margin-bottom: 0;
+}
+
+.entry-content li {
+  margin-bottom: 0.4em;
+}
+
+.entry-content li:last-child {
+  margin-bottom: 0;
 }
 
 .entry-content h2 {
@@ -902,7 +960,7 @@ button, input, select, textarea {
   opacity: 1;
 }
 
-/* Responsive */
+/* Responsive Mobile Layout Fixes */
 @media (max-width: 1200px) {
   .article-layout-grid {
     grid-template-columns: var(--sidebar-left-width) minmax(0, 1fr);
@@ -913,22 +971,65 @@ button, input, select, textarea {
 }
 
 @media (max-width: 900px) {
+  .site-header {
+    height: 60px;
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-container {
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 16px;
+    width: 100%;
+  }
+  .site-branding {
+    width: auto;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .brand-logo {
+    font-size: 1rem;
+  }
+  .brand-logo svg {
+    height: 20px;
+  }
+  .random-post-btn {
+    padding: 3px 8px;
+    font-size: 0.68rem;
+  }
+  .header-actions {
+    width: auto;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+  .dropdown-pill select {
+    max-width: 120px;
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
   .article-layout-grid {
     grid-template-columns: minmax(0, 1fr);
     width: 100%;
     overflow-x: hidden;
   }
-  .left-sidebar-col {
-    display: none;
+  .left-sidebar-col,
+  .right-sidebar-col {
+    display: none !important;
   }
   .main-content-col {
-    padding: 24px 16px;
+    padding: 20px 16px 40px 16px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
   }
   .entry-title {
-    font-size: 1.85rem;
+    font-size: 1.75rem;
+    line-height: 1.25;
     word-break: break-word;
   }
   .primary-nav {
@@ -943,33 +1044,34 @@ button, input, select, textarea {
    7. MINIMAL & MODERN COMMENTS SECTION STYLING
    ========================================================================== */
 .comments-area {
-  margin-top: 56px;
-  padding-top: 40px;
+  margin-top: 48px;
+  padding-top: 36px;
   border-top: 1px dashed var(--color-grid-line);
 }
 
 .comments-title {
   font-family: var(--font-family-mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-text-muted);
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
-/* Comment List Container */
+/* Comment List */
 .comment-list {
   list-style: none;
   padding: 0;
-  margin: 0 0 40px 0;
+  margin: 0 0 36px 0;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .comment-list .comment {
   list-style: none;
+  margin: 0;
 }
 
 /* Individual Comment Card */
@@ -977,7 +1079,7 @@ button, input, select, textarea {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 20px 24px;
+  padding: 18px 20px;
   position: relative;
   transition: border-color var(--transition-fast);
 }
@@ -991,28 +1093,29 @@ button, input, select, textarea {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .comment-author {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .comment-author .avatar {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 1px solid var(--color-border);
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .comment-author .fn {
   font-family: var(--font-family-heading);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--color-text-primary);
   font-style: normal;
@@ -1024,7 +1127,7 @@ button, input, select, textarea {
 
 .comment-metadata {
   font-family: var(--font-family-mono);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1040,8 +1143,8 @@ button, input, select, textarea {
 
 /* Comment Body Content */
 .comment-content {
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 0.92rem;
+  line-height: 1.6;
   color: var(--color-text-secondary);
 }
 
@@ -1051,21 +1154,21 @@ button, input, select, textarea {
 
 /* Comment Reply Button */
 .comment .reply {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   justify-content: flex-end;
 }
 
 .comment-reply-link {
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   color: var(--color-accent);
   border: 1px solid var(--color-border);
   background-color: var(--color-bg);
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: var(--radius-pill);
   transition: all var(--transition-fast);
   text-decoration: none;
@@ -1080,36 +1183,36 @@ button, input, select, textarea {
 /* Nested Reply Threading */
 .comment-list .children {
   list-style: none;
-  padding-left: 20px;
-  margin-top: 16px;
+  padding-left: 18px;
+  margin-top: 14px;
   border-left: 2px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
 /* Comment Respond Form */
 #respond {
-  margin-top: 48px;
-  padding-top: 32px;
+  margin-top: 40px;
+  padding-top: 28px;
   border-top: 1px dashed var(--color-grid-line);
 }
 
 #reply-title {
   font-family: var(--font-family-mono);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--color-text-primary);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 #cancel-comment-reply-link {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   color: var(--color-accent);
   text-transform: none;
   font-weight: 500;
@@ -1118,33 +1221,44 @@ button, input, select, textarea {
 .comment-form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 14px;
 }
 
-.comment-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+.comment-form p {
+  margin-bottom: 0;
 }
 
-@media (max-width: 640px) {
-  .comment-form-row {
-    grid-template-columns: 1fr;
+.comment-form-author,
+.comment-form-email,
+.comment-form-url {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .comment-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .comment-form #reply-title,
+  .comment-form .comment-notes,
+  .comment-form .logged-in-as,
+  .comment-form .comment-form-comment,
+  .comment-form .comment-form-cookies-consent,
+  .comment-form .form-submit {
+    grid-column: 1 / -1;
   }
 }
 
-.comment-form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.form-label {
-  font-size: 0.78rem;
+.form-label,
+.comment-form label {
+  display: block;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin-bottom: 6px;
 }
 
 .comment-form input[type="text"],
@@ -1155,8 +1269,8 @@ button, input, select, textarea {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 12px 16px;
-  font-size: 0.9rem;
+  padding: 10px 14px;
+  font-size: 0.88rem;
   color: var(--color-text-primary);
   font-family: var(--font-family-sans);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
@@ -1167,18 +1281,21 @@ button, input, select, textarea {
 .comment-form textarea:focus {
   outline: none;
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.15);
+  box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.12);
+}
+
+.form-submit {
+  margin-top: 6px;
 }
 
 .comment-submit-btn,
-.comment-form input[type="submit"] {
-  align-self: flex-start;
-  margin-top: 8px;
+.comment-form input[type="submit"],
+#submit {
   background-color: var(--color-text-primary);
   color: var(--color-bg);
-  padding: 10px 24px;
+  padding: 9px 20px;
   border-radius: var(--radius-sm);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -1186,9 +1303,50 @@ button, input, select, textarea {
 }
 
 .comment-submit-btn:hover,
-.comment-form input[type="submit"]:hover {
+.comment-form input[type="submit"]:hover,
+#submit:hover {
   background-color: var(--color-accent);
   color: #ffffff;
+}
+
+.comment-form-cookies-consent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.comment-form-cookies-consent label {
+  margin-bottom: 0;
+  text-transform: none;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+@media (max-width: 600px) {
+  .comment-body {
+    padding: 14px 16px;
+  }
+  .comment-author .avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .comment-author .fn {
+    font-size: 0.85rem;
+  }
+  .comment-list .children {
+    padding-left: 10px;
+    margin-top: 10px;
+    border-left-width: 1.5px;
+    gap: 10px;
+  }
+  .comment-submit-btn,
+  .comment-form input[type="submit"],
+  #submit {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .comment-notes,
@@ -1346,5 +1504,132 @@ button, input, select, textarea {
 
 .footer-menu a:hover {
   color: var(--color-accent);
+}
+
+/* ==========================================================================
+   10. MINIMAL & CLEAN SEARCH BAR & MODAL STYLING
+   ========================================================================== */
+.search-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+@media (max-width: 600px) {
+  .search-modal {
+    padding-top: 40px;
+  }
+}
+
+.search-modal-box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 580px;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  color: var(--color-text-primary);
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.search-modal-title {
+  font-family: var(--font-family-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.search-modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast);
+}
+
+.search-modal-close-btn:hover {
+  color: var(--color-accent);
+}
+
+/* Minimal Search Input Bar */
+.minimal-search-form {
+  width: 100%;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 4px 6px 4px 14px;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.search-input-wrapper:focus-within {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(246, 130, 31, 0.15);
+}
+
+.search-input-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.minimal-search-form .search-field {
+  flex: 1;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 10px 10px;
+  font-size: 0.92rem;
+  color: var(--color-text-primary);
+  font-family: var(--font-family-sans);
+}
+
+.minimal-search-form .search-field::placeholder {
+  color: var(--color-text-muted);
+  opacity: 0.8;
+}
+
+.search-submit-btn {
+  background-color: var(--color-text-primary);
+  color: var(--color-bg);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color var(--transition-fast), opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.search-submit-btn:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
 }
 

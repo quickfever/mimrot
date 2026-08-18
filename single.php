@@ -2,7 +2,8 @@
 /**
  * The Template for displaying all single posts with 3-Column Tech Layout
  *
- * @package CloudTech
+ * @package Mimrot
+ * @version 1.2.1
  */
 
 get_header();
@@ -18,8 +19,8 @@ get_header();
 		
 		<!-- Top Meta (Breadcrumbs & Category Pills) -->
 		<div class="post-meta-top">
-			<?php cloudtech_breadcrumbs(); ?>
-			<?php cloudtech_post_tags_pills( get_the_ID() ); ?>
+			<?php mimrot_breadcrumbs(); ?>
+			<?php mimrot_post_tags_pills( get_the_ID() ); ?>
 		</div>
 
 		<?php
@@ -34,11 +35,11 @@ get_header();
 
 			if ( $prev_post || $next_post ) :
 				?>
-				<nav class="post-navigation-minimal" aria-label="<?php esc_attr_e( 'Post Navigation', 'cloudtech' ); ?>">
+				<nav class="post-navigation-minimal" aria-label="<?php esc_attr_e( 'Post Navigation', 'mimrot' ); ?>">
 					<div class="post-nav-grid">
 						<?php if ( $prev_post ) : ?>
 							<a href="<?php echo esc_url( get_permalink( $prev_post->ID ) ); ?>" class="post-nav-card nav-previous">
-								<span class="post-nav-direction">&larr; <?php esc_html_e( 'PREVIOUS ARTICLE', 'cloudtech' ); ?></span>
+								<span class="post-nav-direction">&larr; <?php esc_html_e( 'PREVIOUS ARTICLE', 'mimrot' ); ?></span>
 								<span class="post-nav-title"><?php echo esc_html( get_the_title( $prev_post->ID ) ); ?></span>
 							</a>
 						<?php else : ?>
@@ -47,7 +48,7 @@ get_header();
 
 						<?php if ( $next_post ) : ?>
 							<a href="<?php echo esc_url( get_permalink( $next_post->ID ) ); ?>" class="post-nav-card nav-next">
-								<span class="post-nav-direction"><?php esc_html_e( 'NEXT ARTICLE', 'cloudtech' ); ?> &rarr;</span>
+								<span class="post-nav-direction"><?php esc_html_e( 'NEXT ARTICLE', 'mimrot' ); ?> &rarr;</span>
 								<span class="post-nav-title"><?php echo esc_html( get_the_title( $next_post->ID ) ); ?></span>
 							</a>
 						<?php endif; ?>

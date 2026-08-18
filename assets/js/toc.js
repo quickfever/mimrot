@@ -1,6 +1,6 @@
 /**
- * CloudTech Grid - Animated Table of Contents & Scroll-Spy Engine
- * Features smooth sliding active bar indicator matching Cloudflare design
+ * Mimrot - Animated Table of Contents & Scroll-Spy Engine
+ * Features smooth sliding active bar indicator matching design
  */
 document.addEventListener('DOMContentLoaded', () => {
   const contentArea = document.querySelector('.entry-content');

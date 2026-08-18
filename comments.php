@@ -2,8 +2,8 @@
 /**
  * The template for displaying comments
  *
- * @package CloudTech
- * @version 1.2.0
+ * @package Mimrot
+ * @version 1.2.1
  */
 
 if ( post_password_required() ) {
@@ -18,11 +18,11 @@ if ( post_password_required() ) {
 			<?php
 			$comment_count = get_comments_number();
 			if ( '1' === $comment_count ) {
-				printf( esc_html__( '1 COMMENT', 'cloudtech' ) );
+				printf( esc_html__( '1 COMMENT', 'mimrot' ) );
 			} else {
 				printf(
 					/* translators: 1: comment count */
-					esc_html( _nx( '%1$s COMMENT', '%1$s COMMENTS', $comment_count, 'comments title', 'cloudtech' ) ),
+					esc_html( _nx( '%1$s COMMENT', '%1$s COMMENTS', $comment_count, 'comments title', 'mimrot' ) ),
 					number_format_i18n( $comment_count )
 				);
 			}
@@ -35,7 +35,7 @@ if ( post_password_required() ) {
 				array(
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'avatar_size' => 44,
+					'avatar_size' => 40,
 				)
 			);
 			?>
@@ -44,14 +44,14 @@ if ( post_password_required() ) {
 		<?php
 		the_comments_navigation(
 			array(
-				'prev_text' => esc_html__( '&larr; Older Comments', 'cloudtech' ),
-				'next_text' => esc_html__( 'Newer Comments &rarr;', 'cloudtech' ),
+				'prev_text' => esc_html__( '&larr; Older Comments', 'mimrot' ),
+				'next_text' => esc_html__( 'Newer Comments &rarr;', 'mimrot' ),
 			)
 		);
 		?>
 
 		<?php if ( ! comments_open() ) : ?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed for this article.', 'cloudtech' ); ?></p>
+			<p class="no-comments"><?php esc_html_e( 'Comments are closed for this article.', 'mimrot' ); ?></p>
 		<?php endif; ?>
 
 	<?php endif; ?>
@@ -60,16 +60,16 @@ if ( post_password_required() ) {
 	$commenter = wp_get_current_commenter();
 	comment_form(
 		array(
-			'title_reply'        => esc_html__( 'LEAVE A COMMENT', 'cloudtech' ),
-			'title_reply_to'     => esc_html__( 'LEAVE A REPLY TO %s', 'cloudtech' ),
-			'cancel_reply_link'  => esc_html__( 'Cancel Reply', 'cloudtech' ),
-			'label_submit'       => esc_html__( 'Post Comment', 'cloudtech' ),
+			'title_reply'        => esc_html__( 'LEAVE A COMMENT', 'mimrot' ),
+			'title_reply_to'     => esc_html__( 'LEAVE A REPLY TO %s', 'mimrot' ),
+			'cancel_reply_link'  => esc_html__( 'Cancel Reply', 'mimrot' ),
+			'label_submit'       => esc_html__( 'Post Comment', 'mimrot' ),
 			'class_submit'       => 'btn-primary comment-submit-btn',
-			'comment_field'      => '<div class="comment-form-group comment-form-comment"><label for="comment" class="form-label">' . esc_html__( 'Comment', 'cloudtech' ) . '</label><textarea id="comment" name="comment" cols="45" rows="4" placeholder="' . esc_attr__( 'Join the discussion...', 'cloudtech' ) . '" required="required"></textarea></div>',
+			'comment_field'      => '<p class="comment-form-comment"><label for="comment" class="form-label">' . esc_html__( 'Comment', 'mimrot' ) . '</label><textarea id="comment" name="comment" cols="45" rows="4" placeholder="' . esc_attr__( 'Write your response here...', 'mimrot' ) . '" required="required"></textarea></p>',
 			'fields'             => array(
-				'author' => '<div class="comment-form-row"><div class="comment-form-group"><label for="author" class="form-label">' . esc_html__( 'Name *', 'cloudtech' ) . '</label><input id="author" name="author" type="text" placeholder="' . esc_attr__( 'Your name', 'cloudtech' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" required="required" /></div>',
-				'email'  => '<div class="comment-form-group"><label for="email" class="form-label">' . esc_html__( 'Email *', 'cloudtech' ) . '</label><input id="email" name="email" type="email" placeholder="' . esc_attr__( 'your@email.com', 'cloudtech' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" required="required" /></div></div>',
-				'url'    => '<div class="comment-form-group"><label for="url" class="form-label">' . esc_html__( 'Website (optional)', 'cloudtech' ) . '</label><input id="url" name="url" type="url" placeholder="' . esc_attr__( 'https://yourwebsite.com', 'cloudtech' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" /></div>',
+				'author' => '<p class="comment-form-author"><label for="author" class="form-label">' . esc_html__( 'Name *', 'mimrot' ) . '</label><input id="author" name="author" type="text" placeholder="' . esc_attr__( 'Your name', 'mimrot' ) . '" value="' . esc_attr( $commenter['comment_author'] ) . '" required="required" /></p>',
+				'email'  => '<p class="comment-form-email"><label for="email" class="form-label">' . esc_html__( 'Email *', 'mimrot' ) . '</label><input id="email" name="email" type="email" placeholder="' . esc_attr__( 'your@email.com', 'mimrot' ) . '" value="' . esc_attr( $commenter['comment_author_email'] ) . '" required="required" /></p>',
+				'url'    => '<p class="comment-form-url"><label for="url" class="form-label">' . esc_html__( 'Website (optional)', 'mimrot' ) . '</label><input id="url" name="url" type="url" placeholder="' . esc_attr__( 'https://yourwebsite.com', 'mimrot' ) . '" value="' . esc_attr( $commenter['comment_author_url'] ) . '" /></p>',
 			),
 		)
 	);

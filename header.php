@@ -7,7 +7,7 @@
 	<script>
 		// Inline Theme Initializer to avoid Light/Dark FOUC
 		(function() {
-			const savedTheme = localStorage.getItem('cloudtech_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+			const savedTheme = localStorage.getItem('mimrot_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 			document.documentElement.setAttribute('data-theme', savedTheme);
 		})();
 	</script>
@@ -39,8 +39,8 @@
 			}
 			?>
 
-			<?php if ( get_theme_mod( 'cloudtech_enable_random_post_btn', true ) ) : ?>
-				<a href="<?php echo esc_url( home_url( '/?random=1' ) ); ?>" class="random-post-btn" title="<?php esc_attr_e( 'Read Random Article', 'cloudtech' ); ?>" aria-label="<?php esc_attr_e( 'Random Article', 'cloudtech' ); ?>">
+			<?php if ( get_theme_mod( 'mimrot_enable_random_post_btn', true ) ) : ?>
+				<a href="<?php echo esc_url( home_url( '/?random=1' ) ); ?>" class="random-post-btn" title="<?php esc_attr_e( 'Read Random Article', 'mimrot' ); ?>" aria-label="<?php esc_attr_e( 'Random Article', 'mimrot' ); ?>">
 					<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
 						<polyline points="16 3 21 3 21 8"></polyline>
 						<line x1="4" y1="20" x2="21" y2="3"></line>
@@ -48,13 +48,13 @@
 						<line x1="15" y1="15" x2="21" y2="21"></line>
 						<line x1="4" y1="4" x2="9" y2="9"></line>
 					</svg>
-					<span><?php esc_html_e( 'Random', 'cloudtech' ); ?></span>
+					<span><?php esc_html_e( 'Random', 'mimrot' ); ?></span>
 				</a>
 			<?php endif; ?>
 		</div>
 
 		<!-- Primary Navigation Menu -->
-		<nav class="primary-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'cloudtech' ); ?>">
+		<nav class="primary-nav" aria-label="<?php esc_attr_e( 'Primary Menu', 'mimrot' ); ?>">
 			<?php
 			if ( has_nav_menu( 'primary' ) ) {
 				wp_nav_menu(
@@ -68,24 +68,24 @@
 				?>
 				<ul class="nav-menu">
 					<li class="menu-item-has-children">
-						<a href="#"><?php esc_html_e( 'Products', 'cloudtech' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
+						<a href="#"><?php esc_html_e( 'Products', 'mimrot' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
 						<ul class="sub-menu">
-							<li><a href="#"><?php esc_html_e( 'Cloud Security', 'cloudtech' ); ?></a></li>
-							<li><a href="#"><?php esc_html_e( 'Zero Trust Architecture', 'cloudtech' ); ?></a></li>
-							<li><a href="#"><?php esc_html_e( 'Developer Platform', 'cloudtech' ); ?></a></li>
-							<li><a href="#"><?php esc_html_e( 'AI & Vector Database', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Cloud Security', 'mimrot' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Zero Trust Architecture', 'mimrot' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Developer Platform', 'mimrot' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'AI & Vector Database', 'mimrot' ); ?></a></li>
 						</ul>
 					</li>
 					<li class="menu-item-has-children">
-						<a href="#"><?php esc_html_e( 'Solutions', 'cloudtech' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
+						<a href="#"><?php esc_html_e( 'Solutions', 'mimrot' ); ?> <span style="font-size:0.7em; opacity:0.7;">&#9662;</span></a>
 						<ul class="sub-menu">
-							<li><a href="#"><?php esc_html_e( 'Enterprise Edge', 'cloudtech' ); ?></a></li>
-							<li><a href="#"><?php esc_html_e( 'Startups & Scale-ups', 'cloudtech' ); ?></a></li>
-							<li><a href="#"><?php esc_html_e( 'E-Commerce Infrastructure', 'cloudtech' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Enterprise Edge', 'mimrot' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'Startups & Scale-ups', 'mimrot' ); ?></a></li>
+							<li><a href="#"><?php esc_html_e( 'E-Commerce Infrastructure', 'mimrot' ); ?></a></li>
 						</ul>
 					</li>
-					<li><a href="#"><?php esc_html_e( 'Resources', 'cloudtech' ); ?></a></li>
-					<li><a href="#"><?php esc_html_e( 'Pricing', 'cloudtech' ); ?></a></li>
+					<li><a href="#"><?php esc_html_e( 'Resources', 'mimrot' ); ?></a></li>
+					<li><a href="#"><?php esc_html_e( 'Pricing', 'mimrot' ); ?></a></li>
 				</ul>
 				<?php
 			}
@@ -97,8 +97,8 @@
 			
 			<!-- Category Selector Dropdown -->
 			<div class="dropdown-pill">
-				<select onchange="if(this.value) window.location.href=this.value;" class="tag-pill" aria-label="<?php esc_attr_e( 'Select Category', 'cloudtech' ); ?>" style="cursor:pointer;">
-					<option value=""><?php esc_html_e( 'All Categories', 'cloudtech' ); ?></option>
+				<select onchange="if(this.value) window.location.href=this.value;" class="tag-pill" aria-label="<?php esc_attr_e( 'Select Category', 'mimrot' ); ?>" style="cursor:pointer;">
+					<option value=""><?php esc_html_e( 'All Categories', 'mimrot' ); ?></option>
 					<?php
 					$categories = get_categories();
 					foreach ( $categories as $cat ) {
@@ -109,7 +109,7 @@
 			</div>
 
 			<!-- Search Button -->
-			<button id="search-modal-trigger" class="icon-btn" title="<?php esc_attr_e( 'Search Articles', 'cloudtech' ); ?>" aria-label="<?php esc_attr_e( 'Search', 'cloudtech' ); ?>">
+			<button id="search-modal-trigger" class="icon-btn" title="<?php esc_attr_e( 'Search Articles', 'mimrot' ); ?>" aria-label="<?php esc_attr_e( 'Search', 'mimrot' ); ?>">
 				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 					<circle cx="11" cy="11" r="8"></circle>
 					<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -117,7 +117,7 @@
 			</button>
 
 			<!-- Theme Dark/Light Mode Switcher -->
-			<button id="theme-toggle-btn" class="icon-btn" title="<?php esc_attr_e( 'Toggle Theme Mode', 'cloudtech' ); ?>" aria-label="<?php esc_attr_e( 'Toggle Dark/Light Mode', 'cloudtech' ); ?>">
+			<button id="theme-toggle-btn" class="icon-btn" title="<?php esc_attr_e( 'Toggle Theme Mode', 'mimrot' ); ?>" aria-label="<?php esc_attr_e( 'Toggle Dark/Light Mode', 'mimrot' ); ?>">
 				<svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
 					<circle cx="12" cy="12" r="5"></circle>
 					<line x1="12" y1="1" x2="12" y2="3"></line>
@@ -131,8 +131,8 @@
 
 			<!-- Action Button -->
 			<?php
-			$header_btn_text = get_theme_mod( 'cloudtech_header_button_text', __( 'Login', 'cloudtech' ) );
-			$header_btn_url  = get_theme_mod( 'cloudtech_header_button_url', '' );
+			$header_btn_text = get_theme_mod( 'mimrot_header_button_text', __( 'Login', 'mimrot' ) );
+			$header_btn_url  = get_theme_mod( 'mimrot_header_button_url', '' );
 			if ( empty( $header_btn_url ) ) {
 				$header_btn_url = wp_login_url();
 			}

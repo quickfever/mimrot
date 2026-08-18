@@ -1,12 +1,15 @@
 /**
- * CloudTech Grid Theme Core JavaScript Utilities
+ * Mimrot Theme Core JavaScript Utilities
+ *
+ * @package Mimrot
+ * @version 1.2.1
  */
-window.CloudTechMain = {
+window.MimrotMain = {
   // Toggle Dark/Light Mode
   toggleTheme: function () {
     const currentTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
-    localStorage.setItem('cloudtech_theme', currentTheme);
+    localStorage.setItem('mimrot_theme', currentTheme);
   },
 
   // Copy URL with toast notification
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeBtn = document.getElementById('theme-toggle-btn');
   if (themeBtn) {
     themeBtn.addEventListener('click', () => {
-      CloudTechMain.toggleTheme();
+      MimrotMain.toggleTheme();
     });
   }
 

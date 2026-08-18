@@ -2,7 +2,8 @@
 /**
  * Template part for displaying single post content
  *
- * @package CloudTech
+ * @package Mimrot
+ * @version 1.2.1
  */
 
 ?>
@@ -35,11 +36,11 @@
 			<div class="reading-meta-tools">
 				<span class="tool-item">
 					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-					<?php echo esc_html( cloudtech_estimated_reading_time( get_the_ID() ) ); ?>
+					<?php echo esc_html( mimrot_estimated_reading_time( get_the_ID() ) ); ?>
 				</span>
-				<button type="button" class="tool-item copy-url-btn" onclick="CloudTechMain.copyCurrentUrl(this)">
+				<button type="button" class="tool-item copy-url-btn" onclick="MimrotMain.copyCurrentUrl(this)">
 					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-					<?php esc_html_e( 'COPY URL', 'cloudtech' ); ?>
+					<?php esc_html_e( 'COPY URL', 'mimrot' ); ?>
 				</button>
 			</div>
 		</div>
@@ -59,7 +60,7 @@
 
 		wp_link_pages(
 			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'cloudtech' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'mimrot' ),
 				'after'  => '</div>',
 			)
 		);
@@ -68,7 +69,7 @@
 
 	<!-- Entry Footer -->
 	<footer class="entry-footer" style="margin-top: 48px; padding-top: 24px; border-top: 1px dashed var(--color-grid-line);">
-		<?php cloudtech_post_tags_pills( get_the_ID() ); ?>
+		<?php mimrot_post_tags_pills( get_the_ID() ); ?>
 	</footer>
 
 </article>
