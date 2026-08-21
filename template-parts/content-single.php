@@ -26,10 +26,10 @@
 			<div class="author-info">
 				<div class="author-avatars">
 					<img class="author-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="<?php echo esc_attr( get_the_author() ); ?>">
-					<img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Co-author">
+					<img class="author-avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Editorial Staff">
 				</div>
 				<div class="author-names">
-					<?php the_author(); ?> <span>and</span> Marina Elmore
+					<?php the_author(); ?> <span>and</span> Editorial Staff
 				</div>
 			</div>
 
@@ -48,7 +48,7 @@
 	</header>
 
 	<?php if ( has_post_thumbnail() ) : ?>
-		<div class="post-featured-image" style="margin-bottom: 32px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border);">
+		<div class="post-featured-image">
 			<?php the_post_thumbnail( 'full' ); ?>
 		</div>
 	<?php endif; ?>
@@ -68,7 +68,7 @@
 	</div>
 
 	<!-- Entry Footer -->
-	<footer class="entry-footer" style="margin-top: 48px; padding-top: 24px; border-top: 1px dashed var(--color-grid-line);">
+	<footer class="entry-footer">
 		<?php mimrot_post_tags_pills( get_the_ID() ); ?>
 	</footer>
 

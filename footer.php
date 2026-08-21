@@ -11,10 +11,10 @@
 </div> <!-- /.tech-grid-wrapper -->
 
 <!-- Site Footer -->
-<footer id="colophon" class="site-footer" style="border-top: 1px dashed var(--color-grid-line); background-color: var(--color-bg); padding: 48px 24px 32px 24px;">
-	<div class="footer-container" style="max-width: var(--site-max-width); margin: 0 auto;">
+<footer id="colophon" class="site-footer">
+	<div class="footer-container">
 		
-		<div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 40px;">
+		<div class="footer-grid">
 			
 			<?php if ( is_active_sidebar( 'footer-sidebar' ) ) : ?>
 				<?php dynamic_sidebar( 'footer-sidebar' ); ?>
@@ -22,34 +22,34 @@
 				
 				<!-- Default Footer Column 1 -->
 				<div class="footer-col">
-					<h4 class="footer-widget-title" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 16px; font-family: var(--font-family-mono);"><?php esc_html_e( 'PRODUCTS', 'mimrot' ); ?></h4>
-					<ul style="list-style: none; font-size: 0.88rem;">
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Application Services', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'AI & Workers', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Zero Trust', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Network Services', 'mimrot' ); ?></a></li>
+					<h4 class="footer-widget-title"><?php esc_html_e( 'PRODUCTS', 'mimrot' ); ?></h4>
+					<ul class="footer-list">
+						<li><a href="#"><?php esc_html_e( 'Application Services', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'AI & Workers', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Zero Trust', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Network Services', 'mimrot' ); ?></a></li>
 					</ul>
 				</div>
 
 				<!-- Default Footer Column 2 -->
 				<div class="footer-col">
-					<h4 class="footer-widget-title" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 16px; font-family: var(--font-family-mono);"><?php esc_html_e( 'RESOURCES', 'mimrot' ); ?></h4>
-					<ul style="list-style: none; font-size: 0.88rem;">
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Developer Docs', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'API Reference', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'System Status', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'GitHub Repositories', 'mimrot' ); ?></a></li>
+					<h4 class="footer-widget-title"><?php esc_html_e( 'RESOURCES', 'mimrot' ); ?></h4>
+					<ul class="footer-list">
+						<li><a href="#"><?php esc_html_e( 'Developer Docs', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'API Reference', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'System Status', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'GitHub Repositories', 'mimrot' ); ?></a></li>
 					</ul>
 				</div>
 
 				<!-- Default Footer Column 3 -->
 				<div class="footer-col">
-					<h4 class="footer-widget-title" style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 16px; font-family: var(--font-family-mono);"><?php esc_html_e( 'COMPANY', 'mimrot' ); ?></h4>
-					<ul style="list-style: none; font-size: 0.88rem;">
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'About Us', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Careers', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Press & News', 'mimrot' ); ?></a></li>
-						<li style="margin-bottom: 8px;"><a href="#" style="color: var(--color-text-secondary);"><?php esc_html_e( 'Contact Sales', 'mimrot' ); ?></a></li>
+					<h4 class="footer-widget-title"><?php esc_html_e( 'COMPANY', 'mimrot' ); ?></h4>
+					<ul class="footer-list">
+						<li><a href="#"><?php esc_html_e( 'About Us', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Careers', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Press & News', 'mimrot' ); ?></a></li>
+						<li><a href="#"><?php esc_html_e( 'Contact Sales', 'mimrot' ); ?></a></li>
 					</ul>
 				</div>
 

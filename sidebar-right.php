@@ -20,7 +20,7 @@
 
 		<?php
 		if ( is_active_sidebar( 'right-sidebar' ) ) {
-			echo '<div class="right-widgets-wrapper" style="margin-top: 36px; border-top: 1px dashed var(--color-grid-line); padding-top: 24px;">';
+			echo '<div class="right-widgets-wrapper">';
 			dynamic_sidebar( 'right-sidebar' );
 			echo '</div>';
 		}

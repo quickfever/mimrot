@@ -17,16 +17,16 @@ get_header();
 	<!-- Main Content Column -->
 	<main id="primary" class="main-content-col">
 		
-		<header class="archive-header" style="margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px dashed var(--color-grid-line);">
-			<h1 class="entry-title" style="font-size: 2.25rem;"><?php esc_html_e( 'Latest Engineering & AI Insights', 'mimrot' ); ?></h1>
-			<p style="color: var(--color-text-muted); font-size: 1rem; margin-top: 8px;">
+		<header class="archive-header">
+			<h1 class="entry-title archive-title"><?php esc_html_e( 'Latest Engineering & AI Insights', 'mimrot' ); ?></h1>
+			<p class="archive-description">
 				<?php esc_html_e( 'Deep dives, architectural breakdowns, and announcements from our technical teams.', 'mimrot' ); ?>
 			</p>
 		</header>
 
 		<?php if ( have_posts() ) : ?>
 
-			<div class="posts-list-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;">
+			<div class="posts-list-grid">
 				<?php
 				while ( have_posts() ) :
 					the_post();
@@ -49,18 +49,22 @@ get_header();
 
 		<?php else : ?>
 
-			<p><?php esc_html_e( 'No posts found.', 'mimrot' ); ?></p>
+			<p class="no-posts-found"><?php esc_html_e( 'No posts found.', 'mimrot' ); ?></p>
 
 		<?php endif; ?>
 
 	</main>
 
-	<!-- Empty / Minimal Right Column for Archive Page Symmetry -->
+	<!-- Right Column: Subscribe Widget for Archive Symmetry -->
 	<aside class="right-sidebar-col">
-		<div class="toc-header"><?php esc_html_e( 'SUBSCRIBE TO UPDATES', 'mimrot' ); ?></div>
-		<p style="font-size: 0.82rem; color: var(--color-text-muted); margin-bottom: 16px;">Get technical deep dives delivered straight to your inbox.</p>
-		<input type="email" placeholder="you@company.com" style="width:100%; padding:8px 12px; font-size:0.85rem; border:1px solid var(--color-border); border-radius:var(--radius-sm); margin-bottom:8px; background:var(--color-surface); color:var(--color-text-primary);">
-		<button class="btn-primary" style="width:100%;"><?php esc_html_e( 'Subscribe', 'mimrot' ); ?></button>
+		<div class="subscribe-widget">
+			<div class="toc-header"><?php esc_html_e( 'SUBSCRIBE TO UPDATES', 'mimrot' ); ?></div>
+			<p class="subscribe-description"><?php esc_html_e( 'Get technical deep dives delivered straight to your inbox.', 'mimrot' ); ?></p>
+			<form class="subscribe-form" action="#" method="post">
+				<input type="email" class="subscribe-input" placeholder="<?php esc_attr_e( 'you@company.com', 'mimrot' ); ?>" required />
+				<button type="submit" class="btn-primary subscribe-btn"><?php esc_html_e( 'Subscribe', 'mimrot' ); ?></button>
+			</form>
+		</div>
 	</aside>
 
 </div>
